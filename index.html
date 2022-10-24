@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./styles/common/common.min.css">
+    <link rel="stylesheet" href="./styles/index/index.min.css">
+
+    <title>Bug Tracker • Home</title>
+</head>
+<body>
+
+    <header class="header">
+
+        <p class="headerTitle">Bug Tracker</p>
+
+        <ul class="headerResume">
+            <li class="headerResumeTotal">8 bugs, </li>
+            <li class="headerResumeInProgress">4 en cours, </li>
+            <li class="headerResumeCompleted">1 traité</li>
+        </ul>
+
+        <ul class="headerActions">
+            <button class="actionButton CompleteListFilter">Liste complète</button>
+            <button class="actionButton treatListFilter">À traiter</button>
+            <button class="actionButtonTwo add">Ajouter</button>
+
+        </ul>
+
+    </header>    
+
+    <main>
+        <table class="table">
+
+            <thead>
+                <tr class="tableHead">
+                    <th class="tableheadDesc" scope="col">Désignation</th>
+                    <th class="tableheadDate" scope="col">Date</th>
+                    <th class="tableheadName" scope="col">Nom</th>
+                    <th class="tableheadState" scope="col">Etat</th>
+                    <th class="tableheadDelete" scope="col"></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <!--Placeholder-->
+                <tr class="tableUnit">
+                    <td class="tableUnitDesc">
+                        <p class="tableUnitDescTitle">Title</p>
+                        <p class="tableUnitDescDesc">Description</p>
+                    </td>
+                    <td class="tableUnitDate">date</td>
+                    <td class="tableUnitName">developer</td>
+                    <td class="tableunitState">
+                        <datalist>
+                            <option value="À traiter">
+                            <option value="En cours">
+                            <option value="Terminé">
+                        </datalist>
+                    </td>
+                    <td class="tableUnitDelete">
+                        <button class="actionButton deleteButton">Supprimer</button>
+                    </td>
+
+                </tr>
+            </tbody>
+
+        </table>
+    </main>
+    
+</body>
+</html>

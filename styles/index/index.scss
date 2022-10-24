@@ -1,0 +1,36 @@
+@mixin flexCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header {
+    @include flexCenter;
+    height: 6.25rem;
+    justify-content: space-between;
+    padding: 0 1.25rem;
+    &Title {
+        font-weight: bolder;
+        font-size: 2rem;
+    }
+    &Resume {
+        @include flexCenter;
+    }
+}
+
+.table {   
+    height: auto;
+    width: 100%;
+    &Head {    
+        & > * {
+            height: 6.25rem;
+            border: 2px solid rgb(36, 36, 36);
+        }
+    }
+    &Unit {
+        & > * {
+            height: 5rem;
+            border: 2px solid rgb(36, 36, 36);
+        }
+    }
+}
