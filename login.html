@@ -12,23 +12,21 @@
 </head>
 <body>
 
-    <div class="login-page">
-        <div class="form">
-            <form class="register-form">
-                <input type="text" placeholder="name" />
-                <input type="password" placeholder="password" />
-                <input type="text" placeholder="email address" />
-                <button>create</button>
-                <p class="message">Already registered? <a href="#">Sign In</a></p>
-            </form>
-            <form class="login-form">
-                <input type="text" placeholder="username" />
-                <input type="password" placeholder="password" />
-                <button>login</button>
-                <p class="message">Not registered? <a href="#">Create an account</a></p>
-            </form>
-        </div>
-    </div>
+    <form id="authForm">
+        <legend>Bug Tracker</legend>
+
+        <label for="authFormUsername">Nom d'utilisateur</label>
+        <input type="text" name="username" id="authFormUsername">
+
+        <label for="authFormPassword">Mot de passe</label>
+        <input type="password" name="password" id="authFormPassword">
+
+        <label for="authFormSubmit"></label>
+        <input class="actionButton authButton" type="submit" value="Connexion" id="authFormSubmit">
+        
+        <a class="goToSignupLogin" href="signup.html">Inscription</a>
+
+    </form>
     
 </body>
 </html>

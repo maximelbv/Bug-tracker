@@ -1,0 +1,32 @@
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#authForm {
+    width: 30rem;
+    color: white;
+    background: rgb(49, 49, 49);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem;
+    & legend {
+        padding: 2rem;
+        font-size: 3rem;
+    }
+    & label {
+        margin-bottom: .2rem;
+        align-self: flex-start;
+        letter-spacing: .06rem;
+    }
+    &Username, &Password, &PasswordConfirm {
+        border-radius: .3rem;
+        width: 95%;
+        margin-bottom: 2rem;
+        align-self: flex-start;
+        padding: .6rem;
+    }
+}

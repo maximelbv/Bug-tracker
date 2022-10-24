@@ -4,11 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./styles/common/common.min.css">
+    <link rel="stylesheet" href="./styles/loginSignup/loginSignup.min.css">
+
     <title>Bug Tracker • Signup</title>
 </head>
 <body>
 
+    <form id="authForm">
+        <legend>Bug Tracker</legend>
     
+        <label for="authFormUsername">Nom d'utilisateur</label>
+        <input type="text" name="username" id="authFormUsername">
+    
+        <label for="authFormPassword">Mot de passe</label>
+        <input type="password" name="password" id="authFormPassword">
+
+        <label for="authFormPasswordConfirm">Confirmez le mot de passe</label>
+        <input type="password" name="passwordConfirm" id="authFormPasswordConfirm">
+    
+        <label for="authFormSubmit"></label>
+        <input class="actionButton authButton" type="submit" value="Inscription" id="authFormSubmit">
+    
+        <a class="goToSignupLogin" href="login.html">Connexion</a>
+    
+    </form>
     
 </body>
 </html>

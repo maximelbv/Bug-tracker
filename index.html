@@ -36,11 +36,11 @@
 
             <thead>
                 <tr class="tableHead">
-                    <th class="tableheadDesc" scope="col">Désignation</th>
-                    <th class="tableheadDate" scope="col">Date</th>
-                    <th class="tableheadName" scope="col">Nom</th>
-                    <th class="tableheadState" scope="col">Etat</th>
-                    <th class="tableheadDelete" scope="col"></th>
+                    <th class="tableHeadDesc" scope="col">Désignation</th>
+                    <th class="tableHeadDate" scope="col">Date</th>
+                    <th class="tableHeadName" scope="col">Nom</th>
+                    <th class="tableHeadState" scope="col">Etat</th>
+                    <th class="tableHeadDelete" scope="col"></th>
                 </tr>
             </thead>
 
@@ -54,17 +54,17 @@
                     <td class="tableUnitDate">date</td>
                     <td class="tableUnitName">developer</td>
                     <td class="tableunitState">
-                        <datalist>
-                            <option value="À traiter">
-                            <option value="En cours">
-                            <option value="Terminé">
-                        </datalist>
+                        <select name="state" id="stateList">
+                            <option value="À traiter">À traiter</option>
+                            <option value="En cours">En cours</option>
+                            <option value="Terminé">Terminé</option>
+                        </select>
                     </td>
                     <td class="tableUnitDelete">
                         <button class="actionButton deleteButton">Supprimer</button>
                     </td>
-
                 </tr>
+                
             </tbody>
 
         </table>

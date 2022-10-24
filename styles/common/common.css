@@ -31,3 +31,17 @@
 .deleteButton {
   background: #ff4949;
 }
+
+.authButton {
+  margin: 1.5rem 0;
+  background: #00a2ff;
+  width: 100%;
+}
+
+.goToSignupLogin {
+  color: #4d85e4;
+}
+
+.goToSignupLogin:hover {
+  text-decoration: underline;
+}

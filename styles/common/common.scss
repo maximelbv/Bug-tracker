@@ -12,12 +12,6 @@
     list-style-type: none;
 }
 
-// td {
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-// }
-
 .actionButton {
     padding: 1rem;
     border-radius: .3rem;
@@ -37,4 +31,17 @@
 
 .deleteButton {
     background: rgb(255, 73, 73);
+}
+
+.authButton {
+    margin: 1.5rem 0;
+    background: rgb(0, 162, 255);
+    width: 100%;
+}
+
+.goToSignupLogin {
+    color: rgb(77, 133, 228);
+    &:hover {
+        text-decoration: underline;
+    }
 }
