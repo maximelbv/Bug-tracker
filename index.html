@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./styles/common/common.min.css">
     <link rel="stylesheet" href="./styles/index/index.min.css">
 
-    <script src="./script.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="./media/icons/bug.ico">
 
     <title>Bug Tracker • Home</title>
 </head>
@@ -16,13 +16,10 @@
 
     <header class="header">
 
-        <p class="headerTitle">Bug Tracker</p>
-
-        <ul class="headerResume">
-            <li class="headerResumeTotal">8 bugs, </li>
-            <li class="headerResumeInProgress">4 en cours, </li>
-            <li class="headerResumeCompleted">1 traité</li>
-        </ul>
+        <div class="headerTitle">
+            <img src="./media/icons/bug.ico" alt="bug tracker logo">
+            <p>Bug Tracker</p>
+        </div>
 
         <ul class="headerActions">
             <button class="actionButton CompleteListFilter">Liste complète</button>
@@ -32,6 +29,27 @@
         </ul>
 
     </header>    
+
+    <div class="stateResume">
+        <ul class="stateResumeList">
+
+            <li class="uncompleted">
+                <p>8</p>
+                <img src="./media/icons/unchecked.png" alt="uncompleted icon" width="16px">
+            </li>
+
+            <li class="InProgress">
+                <p>4</p>
+                <img src="./media/icons/inProgress.png" alt="in progress icon" width="24px">
+            </li>
+            
+            <li class="completed">
+                <p>1</p>
+                <img src="./media/icons/checked.png" alt="completed icon" width="16px">
+            </li>
+
+        </ul>
+    </div>
 
     <main>
         <table class="table">
@@ -63,7 +81,7 @@
                         </select>
                     </td>
                     <td class="tableUnitDelete">
-                        <button class="actionButton deleteButton">Supprimer</button>
+                        <button class="actionButtonTwo deleteButton">Supprimer</button>
                     </td>
                 </tr>
                 

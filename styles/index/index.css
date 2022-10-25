@@ -8,14 +8,44 @@
 }
 
 .headerTitle {
-  font-weight: bolder;
-  font-size: 2rem;
-}
-
-.headerResume {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: bolder;
+  font-size: 1.75rem;
+}
+
+.headerTitle img {
+  margin-right: .5rem;
+}
+
+.stateResume {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stateResumeList {
+  width: 50%;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-around;
+}
+
+.stateResumeList li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stateResumeList li img {
+  padding-left: .4rem;
+}
+
+.stateResumeList li p {
+  font-weight: 600;
 }
 
 .table {

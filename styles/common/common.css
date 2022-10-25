@@ -12,11 +12,16 @@
 }
 
 .actionButton {
-  padding: 1rem;
-  border-radius: .3rem;
-  color: white;
+  padding: .5rem;
+  position: relative;
   cursor: pointer;
-  margin: 0 .2rem;
+  background: none;
+}
+
+.actionButton:hover {
+  text-decoration: underline;
+  text-underline-offset: .5rem;
+  color: #4d85e4;
 }
 
 .actionButtonTwo {
@@ -25,7 +30,7 @@
   background: #66afef;
   color: white;
   cursor: pointer;
-  margin: 0 .2rem;
+  margin: 0 .5rem;
 }
 
 .deleteButton {
@@ -34,14 +39,18 @@
 
 .authButton {
   margin: 1.5rem 0;
-  background: #00a2ff;
+  background: #66afef;
   width: 100%;
 }
 
 .goToSignupLogin {
-  color: #4d85e4;
+  position: relative;
+  cursor: pointer;
+  background: none;
 }
 
 .goToSignupLogin:hover {
   text-decoration: underline;
+  text-underline-offset: .5rem;
+  color: #4d85e4;
 }

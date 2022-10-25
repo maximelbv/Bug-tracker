@@ -10,11 +10,25 @@
     justify-content: space-between;
     padding: 0 1.25rem;
     &Title {
-        font-weight: bolder;
-        font-size: 2rem;
-    }
-    &Resume {
         @include flexCenter;
+        font-weight: bolder;
+        font-size: 1.75rem;
+        & img {margin-right: .5rem}
+    }
+}
+
+.stateResume {
+    @include flexCenter;
+    &List {
+        width: 50%;
+        height: 5rem;
+        @include flexCenter;
+        justify-content: space-around;
+        & li {
+            @include flexCenter;
+            & img {padding-left: .4rem;}
+            & p {font-weight: 600;}
+        }
     }
 }
 

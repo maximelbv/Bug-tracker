@@ -1,5 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
+@mixin linkStyles {
+    
+    position: relative;
+    cursor: pointer;
+    background: none;
+    &:hover {
+        text-decoration: underline;
+        text-underline-offset: .5rem; 
+        color: rgb(77, 133, 228);
+    }
+    
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -13,11 +26,8 @@
 }
 
 .actionButton {
-    padding: 1rem;
-    border-radius: .3rem;
-    color: white;
-    cursor: pointer;
-    margin: 0 .2rem;
+    padding: .5rem;
+    @include linkStyles;
 }
 
 .actionButtonTwo {
@@ -26,7 +36,7 @@
     background: rgb(102, 175, 239);
     color: white;
     cursor: pointer;
-    margin: 0 .2rem;
+    margin: 0 .5rem;
 }
 
 .deleteButton {
@@ -35,13 +45,10 @@
 
 .authButton {
     margin: 1.5rem 0;
-    background: rgb(0, 162, 255);
+    background: rgb(102, 175, 239);
     width: 100%;
 }
 
 .goToSignupLogin {
-    color: rgb(77, 133, 228);
-    &:hover {
-        text-decoration: underline;
-    }
+    @include linkStyles;
 }
