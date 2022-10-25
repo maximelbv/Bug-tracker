@@ -5,6 +5,7 @@
   height: 6.25rem;
   justify-content: space-between;
   padding: 0 1.25rem;
+  box-shadow: 0px 3px 6px #e4e4e4;
 }
 
 .headerTitle {
@@ -17,6 +18,18 @@
 
 .headerTitle img {
   margin-right: .5rem;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerActions * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .stateResume {
@@ -63,9 +76,9 @@
   align-items: center;
   justify-content: center;
   background: #6aa4ea;
-  height: 6.25rem;
+  height: 4rem;
   border-right: 2px solid #353535;
-  border-bottom: 2px solid #353535;
+  border-bottom: 2px dotted #353535;
 }
 
 .tableHeadDesc {
@@ -94,4 +107,13 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 0 .5rem;
+}
+
+@media screen and (max-width: 442px) {
+  .headerTitle img {
+    width: 48px;
+  }
+  .headerTitle p {
+    display: none;
+  }
 }

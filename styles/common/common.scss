@@ -1,7 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
+@mixin flexCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 @mixin linkStyles {
-    
     position: relative;
     cursor: pointer;
     background: none;
@@ -9,8 +14,12 @@
         text-decoration: underline;
         text-underline-offset: .5rem; 
         color: rgb(77, 133, 228);
-    }
-    
+    } 
+}
+
+@mixin switchIconButton {
+    & img {display: block;}
+    & p {display: none;}
 }
 
 * {
@@ -39,8 +48,21 @@
     margin: 0 .5rem;
 }
 
+.addButton {
+    & img {display: none}
+}
+
+.completeListFilter, .treatListFilter {
+    & span {
+        font-weight: 600;
+        display: none
+    }
+}
+
 .deleteButton {
+    @include flexCenter;
     background: rgb(255, 73, 73);
+    & img {display: none;}
 }
 
 .authButton {
@@ -51,4 +73,20 @@
 
 .goToSignupLogin {
     @include linkStyles;
+}
+
+@media screen and (max-width: 860px) {
+
+    .addButton {@include switchIconButton}
+
+        .completeListFilter, .treatListFilter {
+            margin: 0 .5rem;
+            & span {display: inline;}
+            & p {display: none;}
+        }
+
+    .deleteButton {
+        border-radius: 50%;
+        @include switchIconButton;
+    }
 }

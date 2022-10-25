@@ -33,8 +33,24 @@
   margin: 0 .5rem;
 }
 
+.addButton img {
+  display: none;
+}
+
+.completeListFilter span, .treatListFilter span {
+  font-weight: 600;
+  display: none;
+}
+
 .deleteButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: #ff4949;
+}
+
+.deleteButton img {
+  display: none;
 }
 
 .authButton {
@@ -53,4 +69,31 @@
   text-decoration: underline;
   text-underline-offset: .5rem;
   color: #4d85e4;
+}
+
+@media screen and (max-width: 860px) {
+  .addButton img {
+    display: block;
+  }
+  .addButton p {
+    display: none;
+  }
+  .completeListFilter, .treatListFilter {
+    margin: 0 .5rem;
+  }
+  .completeListFilter span, .treatListFilter span {
+    display: inline;
+  }
+  .completeListFilter p, .treatListFilter p {
+    display: none;
+  }
+  .deleteButton {
+    border-radius: 50%;
+  }
+  .deleteButton img {
+    display: block;
+  }
+  .deleteButton p {
+    display: none;
+  }
 }
