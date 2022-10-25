@@ -26,7 +26,7 @@ body {
   letter-spacing: .06rem;
 }
 
-#authFormUsername, #authFormPassword, #authFormPasswordConfirm {
+#authFormUsernameLog, #authFormPasswordLog, #authFormUsernameSignup, #authFormPasswordSignup, #authFormPasswordConfirm {
   border-radius: .3rem;
   width: 95%;
   margin-bottom: 2rem;

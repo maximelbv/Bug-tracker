@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="./styles/common/common.min.css">
     <link rel="stylesheet" href="./styles/loginSignup/loginSignup.min.css">
 
+    <script src="./script.js" defer></script>
+
     <title>Bug Tracker • Signup</title>
 </head>
 <body>
@@ -15,17 +17,17 @@
     <form id="authForm">
         <legend>Bug Tracker</legend>
     
-        <label for="authFormUsername">Nom d'utilisateur</label>
-        <input type="text" name="username" id="authFormUsername">
+        <label for="authFormUsernameSignup">Nom d'utilisateur</label>
+        <input type="text" name="username" id="authFormUsernameSignup" autocomplete="off">
     
-        <label for="authFormPassword">Mot de passe</label>
-        <input type="password" name="password" id="authFormPassword">
+        <label for="authFormPasswordSignup">Mot de passe</label>
+        <input type="password" name="password" id="authFormPasswordSignup" autocomplete="off">
 
         <label for="authFormPasswordConfirm">Confirmez le mot de passe</label>
-        <input type="password" name="passwordConfirm" id="authFormPasswordConfirm">
+        <input type="password" name="passwordConfirm" id="authFormPasswordConfirm" autocomplete="off">
     
-        <label for="authFormSubmit"></label>
-        <input class="actionButton authButton" type="submit" value="Inscription" id="authFormSubmit">
+        <label for="signupSubmit"></label>
+        <input class="actionButton authButton" type="submit" value="Inscription" id="signupSubmit">
     
         <a class="goToSignupLogin" href="login.html">Connexion</a>
     

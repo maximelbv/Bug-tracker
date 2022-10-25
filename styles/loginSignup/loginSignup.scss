@@ -22,7 +22,7 @@ body {
         align-self: flex-start;
         letter-spacing: .06rem;
     }
-    &Username, &Password, &PasswordConfirm {
+    &UsernameLog, &PasswordLog, &UsernameSignup, &PasswordSignup, &PasswordConfirm {
         border-radius: .3rem;
         width: 95%;
         margin-bottom: 2rem;

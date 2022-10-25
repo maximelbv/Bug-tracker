@@ -8,25 +8,30 @@
     <link rel="stylesheet" href="./styles/common/common.min.css">
     <link rel="stylesheet" href="./styles/loginSignup/loginSignup.min.css">
 
+    
+
     <title>Bug Tracker • Login</title>
 </head>
 <body>
 
-    <form id="authForm">
+    <form id="authForm" method="get">
         <legend>Bug Tracker</legend>
 
-        <label for="authFormUsername">Nom d'utilisateur</label>
-        <input type="text" name="username" id="authFormUsername">
+        <label for="authFormUsernameLog">Nom d'utilisateur</label>
+        <input type="text" name="username" id="authFormUsernameLog" autocomplete="off">
 
-        <label for="authFormPassword">Mot de passe</label>
-        <input type="password" name="password" id="authFormPassword">
+        <label for="authFormPasswordLog">Mot de passe</label>
+        <input type="password" name="password" id="authFormPasswordLog" autocomplete="off">
 
-        <label for="authFormSubmit"></label>
-        <input class="actionButton authButton" type="submit" value="Connexion" id="authFormSubmit">
+        <label for="loginSubmit"></label>
+        <input class="actionButton authButton loginBtn" type="submit" value="Connexion" id="loginSubmit">
         
         <a class="goToSignupLogin" href="signup.html">Inscription</a>
 
     </form>
     
 </body>
+
+<script src="./script.js" defer></script>
+
 </html>
