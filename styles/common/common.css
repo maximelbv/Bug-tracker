@@ -80,6 +80,13 @@
   margin-right: 1rem;
 }
 
+.submitReportBtn {
+  background: #66afef !important;
+  width: auto !important;
+  align-self: flex-start;
+  margin-left: -15px !important;
+}
+
 .goToSignupLogin {
   position: relative;
   cursor: pointer;

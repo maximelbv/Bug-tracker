@@ -84,6 +84,13 @@
 
 .homeButton {margin-right: 1rem}
 
+.submitReportBtn {
+    background: rgb(102, 175, 239) !important;
+    width: auto !important;
+    align-self: flex-start;
+    margin-left: -15px !important;
+}
+
 .goToSignupLogin {
     @include linkStyles;
     margin: 1rem 0;
