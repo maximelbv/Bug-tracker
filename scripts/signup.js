@@ -33,6 +33,7 @@ async function signup(e) {
             if (result.result.status === 'done') {
                 sessionStorage.setItem('status', 'loggedIn');
                 sessionStorage.setItem('token', result.result.token);
+                sessionStorage.setItem('userId', result.result.id);
                 location.replace('index.html');
             }
             console.log(result);
