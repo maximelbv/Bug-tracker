@@ -1,0 +1,61 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 6.25rem;
+  justify-content: space-between;
+  padding: 0 1.25rem;
+  box-shadow: 0px 3px 6px #e4e4e4;
+}
+
+.headerTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bolder;
+  font-size: 1.4rem;
+}
+
+.headerTitle img {
+  margin-right: .5rem;
+}
+
+.headerActions {
+  font-size: .9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerActions * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reportForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 50px;
+}
+
+.reportForm legend {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.reportForm label {
+  align-self: flex-start;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+}
+
+.reportForm input, .reportForm textarea {
+  width: 100%;
+  margin-top: .5rem;
+  padding: 1rem;
+  background: #f1f1f1;
+  border-radius: .5rem;
+}

@@ -1,16 +1,17 @@
 const api = 'http://greenvelvet.alwaysdata.net/bugTracker/api';
 let logoutBtn = document.querySelector('.logoutBtn');
+let addBtn = document.querySelector('.addButton');
 
 if (sessionStorage.getItem('status') !== 'loggedIn') {
     location.replace('login.html')
 }
 
-async function getUser() {
+async function getUser(userId) {
+
     const token = sessionStorage.getItem('token');
-    const userId = sessionStorage.getItem('userId');
 
     try {
-        const response = await fetch(`${api}/users/${token}?id=${userId}`, {
+        const response = await fetch(`${api}/users/${token}`, {
             method: 'GET',
             headers: {
                 accept: 'application/json',
@@ -21,15 +22,14 @@ async function getUser() {
             throw new Error(`Error! status: ${response.status}`);
         }
         const result = await response.json();
-        console.log(result)
-        // if (result.result.status !== 'done') {
-        //     console.log(token);
-        //     console.log(result.result.message);
-        // } else {
-        //     sessionStorage.removeItem('status');
-        //     sessionStorage.removeItem('token');
-        //     location.reload();
-        // }
+        if (result.result.status !== 'done') {
+            console.log(result.result.message);
+        } else {
+            let name = result.result.user[userId];
+            console.log(name);
+            if (name === undefined) {return}
+            else {return name}
+        }
     }
     catch (err) { console.log(err) };
 }
@@ -121,8 +121,7 @@ async function displayBugs () {
 
                 // DEVELOPER NAME
                 let devName = document.createElement('td');
-                devName.innerText = bug.user_id;
-                // faire un fetch de l'user avec son id pour récupérer le name
+                devName.innerText = getUser(bug.user_id);
                 devName.classList.add('tableUnitDate');
                 row.appendChild(devName);
 
@@ -178,4 +177,5 @@ async function displayBugs () {
 }
 
 logoutBtn.addEventListener('click', logout);
+addBtn.addEventListener('click', () => {location.replace('reportABug.html')});
 displayBugs();

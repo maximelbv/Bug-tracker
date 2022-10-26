@@ -71,9 +71,13 @@
   width: 100%;
 }
 
-.logoutBtn {
+.logoutBtn, .homeButton {
   cursor: pointer;
   background: none;
+}
+
+.homeButton {
+  margin-right: 1rem;
 }
 
 .goToSignupLogin {
