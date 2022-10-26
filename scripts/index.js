@@ -1,10 +1,38 @@
 const api = 'http://greenvelvet.alwaysdata.net/bugTracker/api';
+let logoutBtn = document.querySelector('.logoutBtn');
 
 if (sessionStorage.getItem('status') !== 'loggedIn') {
     location.replace('login.html')
 }
 
-let logoutBtn = document.querySelector('.logoutBtn');
+async function getUser() {
+    const token = sessionStorage.getItem('token');
+    const userId = sessionStorage.getItem('userId');
+
+    try {
+        const response = await fetch(`${api}/users/${token}?id=${userId}`, {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error! status: ${response.status}`);
+        }
+        const result = await response.json();
+        console.log(result)
+        // if (result.result.status !== 'done') {
+        //     console.log(token);
+        //     console.log(result.result.message);
+        // } else {
+        //     sessionStorage.removeItem('status');
+        //     sessionStorage.removeItem('token');
+        //     location.reload();
+        // }
+    }
+    catch (err) { console.log(err) };
+}
 
 async function logout() {
 
@@ -36,7 +64,6 @@ async function logout() {
 
 }
 
-
 async function displayBugs () {
 
     const token = sessionStorage.getItem('token');
@@ -66,29 +93,83 @@ async function displayBugs () {
             
             for (let bug of bugList) {
                 console.log(bug);
-                // table.append(`
-                // <tr class="tableUnit">
-                //     <td class="tableUnitDesc">
-                //         <p class="tableUnitDescTitle">Title</p>
-                //         <p class="tableUnitDescDesc">Description</p>
-                //     </td>
-                //     <td class="tableUnitDate">date</td>
-                //     <td class="tableUnitName">developer</td>
-                //     <td class="tableunitState">
-                //         <select name="state" id="stateList">
-                //             <option value="À traiter">À traiter</option>
-                //             <option value="En cours">En cours</option>
-                //             <option value="Terminé">Terminé</option>
-                //         </select>
-                //     </td>
-                //     <td class="tableUnitDelete">
-                //         <button class="actionButtonTwo deleteButton"> 
-                //             <img src="./media/icons/cross.png" alt="cross delete icon" width="12px">
-                //             <p>Supprimer</p>
-                //         </button>
-                //     </td>
-                // </tr>
-                // `)
+
+                let row = document.createElement('tr');
+                row.classList.add('tableUnit');
+                table.appendChild(row);
+
+                // TITLE & DESC
+                let desc = document.createElement('td');
+                desc.classList.add('tableUnitDesc');
+                row.appendChild(desc);
+
+                let descTitle = document.createElement('p');
+                descTitle.innerText = bug.title;
+                descTitle.classList.add('tableUnitDescTitle');
+                desc.appendChild(descTitle);
+
+                let descDesc = document.createElement('p');
+                descDesc.innerText = bug.description;
+                descDesc.classList.add('tableUnitDescDesc');
+                desc.appendChild(descDesc);
+
+                // DATE
+                let date = document.createElement('td');
+                date.innerText = new Date(bug.timestamp);
+                date.classList.add('tableUnitDate');
+                row.appendChild(date);
+
+                // DEVELOPER NAME
+                let devName = document.createElement('td');
+                devName.innerText = bug.user_id;
+                // faire un fetch de l'user avec son id pour récupérer le name
+                devName.classList.add('tableUnitDate');
+                row.appendChild(devName);
+
+
+                //STATE INPUT
+                let stateInputCtn = document.createElement('td');
+                stateInputCtn.classList.add('tableUnitState');
+                row.appendChild(stateInputCtn);
+
+                let stateInput = document.createElement('select');
+                stateInput.setAttribute('name', 'state');
+                stateInput.setAttribute('id', 'stateList');
+                stateInputCtn.appendChild(stateInput);
+
+                let opt1 = document.createElement('option');
+                opt1.setAttribute('value', 'À traiter');
+                opt1.innerText = 'À traiter';
+                stateInput.appendChild(opt1);
+
+                let opt2 = document.createElement('option');
+                opt2.setAttribute('value', 'En cours');
+                opt2.innerText = 'En cours';
+                stateInput.appendChild(opt2);
+
+                let opt3 = document.createElement('option');
+                opt3.setAttribute('value', 'Terminé');
+                opt3.innerText = 'Terminé';
+                stateInput.appendChild(opt3);
+
+                // DELETE BUTTON
+                let deleteCtn = document.createElement('td');
+                deleteCtn.classList.add('tableUnitDelete');
+                row.appendChild(deleteCtn);
+
+                let deleteBtn = document.createElement('button');
+                deleteBtn.classList.add('actionButtonTwo', 'deleteButton');
+                deleteCtn.appendChild(deleteBtn);
+
+                let deleteImg = document.createElement('img');
+                deleteImg.setAttribute('src', './media/icons/cross.png');
+                deleteImg.setAttribute('alt', 'delete button icon');
+                deleteImg.setAttribute('width', '12px');
+                deleteBtn.appendChild(deleteImg);
+
+                let deleteTxt = document.createElement('p');
+                deleteTxt.innerText = 'Supprimer';
+                deleteBtn.appendChild(deleteTxt);
             }
 
         }
