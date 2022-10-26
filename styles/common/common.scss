@@ -50,6 +50,7 @@
 }
 
 .addButton {
+    padding: .5rem;
     & img {display: none}
 }
 
@@ -76,6 +77,11 @@
     width: 100%;
 }
 
+.logoutBtn {
+    cursor: pointer;
+    background: none;
+}
+
 .goToSignupLogin {
     @include linkStyles;
     margin: 1rem 0;
@@ -88,10 +94,11 @@
 
 @media screen and (max-width: 860px) {
 
-    .addButton {@include switchIconButton}
+    .addButton {
+        @include switchIconButton;
+    }
 
         .completeListFilter, .treatListFilter {
-            margin: 0 .5rem;
             & span {display: inline;}
             & p {display: none;}
         }

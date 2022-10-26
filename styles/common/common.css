@@ -37,6 +37,10 @@
   margin: 0 .5rem;
 }
 
+.addButton {
+  padding: .5rem;
+}
+
 .addButton img {
   display: none;
 }
@@ -67,6 +71,11 @@
   width: 100%;
 }
 
+.logoutBtn {
+  cursor: pointer;
+  background: none;
+}
+
 .goToSignupLogin {
   position: relative;
   cursor: pointer;
@@ -95,9 +104,6 @@
   }
   .addButton p {
     display: none;
-  }
-  .completeListFilter, .treatListFilter {
-    margin: 0 .5rem;
   }
   .completeListFilter span, .treatListFilter span {
     display: inline;

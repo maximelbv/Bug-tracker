@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: center;
   font-weight: bolder;
-  font-size: 1.75rem;
+  font-size: 1.4rem;
 }
 
 .headerTitle img {
@@ -21,6 +21,7 @@
 }
 
 .headerActions {
+  font-size: .9rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -110,9 +111,6 @@
 }
 
 @media screen and (max-width: 442px) {
-  .headerTitle img {
-    width: 48px;
-  }
   .headerTitle p {
     display: none;
   }

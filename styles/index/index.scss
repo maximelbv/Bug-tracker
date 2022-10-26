@@ -13,10 +13,11 @@
     &Title {
         @include flexCenter;
         font-weight: bolder;
-        font-size: 1.75rem;
+        font-size: 1.4rem;
         & img {margin-right: .5rem}
     }
     &Actions {
+        font-size: .9rem;
         @include flexCenter;
         & * {@include flexCenter;}
     }
@@ -80,7 +81,6 @@
 @media screen and (max-width: 442px) {
     .header {
         &Title {
-            & img {width: 48px;}
             & p {display: none;}
         }
     }
