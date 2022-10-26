@@ -15,6 +15,7 @@
         text-underline-offset: .5rem; 
         color: rgb(77, 133, 228);
     } 
+    &:visited {color: rgb(77, 133, 228);}
 }
 
 @mixin switchIconButton {
@@ -71,8 +72,18 @@
     width: 100%;
 }
 
+.signupBtn, .loginBtn {
+    width: 100%;
+}
+
 .goToSignupLogin {
     @include linkStyles;
+    margin: 1rem 0;
+}
+
+.errorMsg {
+    color: red;
+    margin-bottom: 1rem;
 }
 
 @media screen and (max-width: 860px) {

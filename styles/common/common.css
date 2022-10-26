@@ -24,6 +24,10 @@
   color: #4d85e4;
 }
 
+.actionButton:visited {
+  color: #4d85e4;
+}
+
 .actionButtonTwo {
   padding: 1rem;
   border-radius: .3rem;
@@ -59,16 +63,30 @@
   width: 100%;
 }
 
+.signupBtn, .loginBtn {
+  width: 100%;
+}
+
 .goToSignupLogin {
   position: relative;
   cursor: pointer;
   background: none;
+  margin: 1rem 0;
 }
 
 .goToSignupLogin:hover {
   text-decoration: underline;
   text-underline-offset: .5rem;
   color: #4d85e4;
+}
+
+.goToSignupLogin:visited {
+  color: #4d85e4;
+}
+
+.errorMsg {
+  color: red;
+  margin-bottom: 1rem;
 }
 
 @media screen and (max-width: 860px) {

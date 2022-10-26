@@ -10,30 +10,32 @@
 
     <link rel="icon" type="image/x-icon" href="./media/icons/bug.ico">
 
-    <script src="./scripts/signup.js" defer></script>
-
+    
     <title>Bug Tracker • Signup</title>
 </head>
 <body>
-
+    
     <form id="authForm">
         <legend>Bug Tracker</legend>
-    
+        
         <label for="authFormUsernameSignup">Nom d'utilisateur</label>
         <input type="text" name="username" id="authFormUsernameSignup" autocomplete="off">
-    
+        
         <label for="authFormPasswordSignup">Mot de passe</label>
         <input type="password" name="password" id="authFormPasswordSignup" autocomplete="off">
-
+        
         <label for="authFormPasswordConfirm">Confirmez le mot de passe</label>
         <input type="password" name="passwordConfirm" id="authFormPasswordConfirm" autocomplete="off">
-    
+
+        <div class="errorCtn"></div>
+        
         <label for="signupSubmit"></label>
-        <input class="actionButton authButton" type="submit" value="Inscription" id="signupSubmit">
-    
+        <input class="actionButtonTwo signupBtn" type="submit" value="Inscription" id="signupSubmit">
+        
         <a class="goToSignupLogin" href="login.html">Connexion</a>
-    
+        
     </form>
     
 </body>
+<script src="./scripts/signup.js" defer></script>
 </html>
