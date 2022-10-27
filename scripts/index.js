@@ -61,7 +61,35 @@ async function logout() {
         }
     }
     catch (err) { console.log(err) };
+    
+}
 
+async function deleteBug (id) {
+
+    const token = sessionStorage.getItem('token');
+    const bugId = id;
+    try {
+        const response = await fetch(`${api}/delete/${token}/${bugId}`, {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error! status: ${response.status}`);
+        }
+        const result = await response.json();
+        console.log(result);
+
+        if (result.result.status !== 'done') {
+            console.log(result.result.message);
+        } else if (result.result.status == 'done'){
+            console.log(result.result.message);
+            location.reload();
+        }
+    }
+    catch (err) { console.log(err) };
 }
 
 async function displayBugs () {
@@ -97,45 +125,55 @@ async function displayBugs () {
                 let row = document.createElement('tr');
                 row.classList.add('tableUnit');
                 table.appendChild(row);
-
+                
                 // TITLE & DESC
                 let desc = document.createElement('td');
                 desc.classList.add('tableUnitDesc');
                 row.appendChild(desc);
-
+                
                 let descTitle = document.createElement('p');
                 descTitle.innerText = bug.title;
                 descTitle.classList.add('tableUnitDescTitle');
                 desc.appendChild(descTitle);
-
+                
                 let descDesc = document.createElement('p');
                 descDesc.innerText = bug.description;
                 descDesc.classList.add('tableUnitDescDesc');
                 desc.appendChild(descDesc);
-
+                
                 // DATE
+                const returnDate = () => {
+                    const time = bug.timestamp * 1000
+                    const format = {
+                        day: 'numeric',
+                        month: "2-digit",
+                        year: "numeric"
+                    }
+                    return (new Date(time).toLocaleString('fr', format))
+                }
+
                 let date = document.createElement('td');
-                date.innerText = new Date(bug.timestamp);
+                date.innerText = returnDate();
                 date.classList.add('tableUnitDate');
                 row.appendChild(date);
-
+                
                 // DEVELOPER NAME
                 let devName = document.createElement('td');
                 devName.innerText = getUser(bug.user_id);
                 devName.classList.add('tableUnitDate');
                 row.appendChild(devName);
-
-
+                
+                
                 //STATE INPUT
                 let stateInputCtn = document.createElement('td');
                 stateInputCtn.classList.add('tableUnitState');
                 row.appendChild(stateInputCtn);
-
+                
                 let stateInput = document.createElement('select');
                 stateInput.setAttribute('name', 'state');
                 stateInput.setAttribute('id', 'stateList');
                 stateInputCtn.appendChild(stateInput);
-
+                
                 let opt1 = document.createElement('option');
                 opt1.setAttribute('value', 'À traiter');
                 opt1.innerText = 'À traiter';
@@ -145,21 +183,22 @@ async function displayBugs () {
                 opt2.setAttribute('value', 'En cours');
                 opt2.innerText = 'En cours';
                 stateInput.appendChild(opt2);
-
+                
                 let opt3 = document.createElement('option');
                 opt3.setAttribute('value', 'Terminé');
                 opt3.innerText = 'Terminé';
                 stateInput.appendChild(opt3);
-
+                
                 // DELETE BUTTON
                 let deleteCtn = document.createElement('td');
                 deleteCtn.classList.add('tableUnitDelete');
                 row.appendChild(deleteCtn);
-
+                
                 let deleteBtn = document.createElement('button');
                 deleteBtn.classList.add('actionButtonTwo', 'deleteButton');
+                deleteBtn.setAttribute('id', bug.id);
                 deleteCtn.appendChild(deleteBtn);
-
+                
                 let deleteImg = document.createElement('img');
                 deleteImg.setAttribute('src', './media/icons/cross.png');
                 deleteImg.setAttribute('alt', 'delete button icon');
@@ -169,12 +208,15 @@ async function displayBugs () {
                 let deleteTxt = document.createElement('p');
                 deleteTxt.innerText = 'Supprimer';
                 deleteBtn.appendChild(deleteTxt);
+
+                // document.querySelector('.deleteButton').addEventListener('click', deleteBug((document.querySelector('.deleteButton').id)));
             }
 
         }
     }
     catch (err) { console.log(err) };
 }
+
 
 logoutBtn.addEventListener('click', logout);
 addBtn.addEventListener('click', () => {location.replace('reportABug.html')});
