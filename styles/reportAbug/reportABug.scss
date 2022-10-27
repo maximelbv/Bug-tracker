@@ -51,3 +51,15 @@
         border-radius: .5rem;
     }
 }
+
+.animCtn {
+    @include flexCenter;
+    margin-top: 10vh;
+}
+
+.validationAnim {
+    width: 300px;
+    height: 300px;
+    align-self: center;
+    justify-self: center;
+}
