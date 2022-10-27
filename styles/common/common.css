@@ -124,6 +124,10 @@
   }
   .deleteButton {
     border-radius: 50%;
+    padding: .4rem;
+    position: absolute;
+    top: .5rem;
+    right: 0;
   }
   .deleteButton img {
     display: block;

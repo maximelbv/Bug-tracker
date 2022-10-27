@@ -2,13 +2,13 @@ const api = 'http://greenvelvet.alwaysdata.net/bugTracker/api';
 returnHomeBtn = document.querySelector('.homeButton');
 let logoutBtn = document.querySelector('.logoutBtn');
 
-if (sessionStorage.getItem('status') !== 'loggedIn') {
+if (localStorage.getItem('status') !== 'loggedIn') {
     location.replace('login.html')
 }
 
 async function logout() {
 
-    const token = sessionStorage.getItem('token');
+    const token = localStorage.getItem('token');
 
     try {
         const response = await fetch(`${api}/logout/${token}`, {
@@ -27,8 +27,8 @@ async function logout() {
             console.log(token);
             console.log(result.result.message);
         } else {
-            sessionStorage.removeItem('status');
-            sessionStorage.removeItem('token');
+            localStorage.removeItem('status');
+            localStorage.removeItem('token');
             location.reload();
         }
     }
@@ -42,8 +42,8 @@ async function addReport(e) {
 
     console.log('ok');
 
-    const token = sessionStorage.getItem('token');
-    const userId = sessionStorage.getItem('userId');
+    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('userId');
 
     const title = document.getElementById('title').value;
     const description = document.getElementById('desc').value;

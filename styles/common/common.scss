@@ -114,6 +114,10 @@
 
     .deleteButton {
         border-radius: 50%;
+        padding: .4rem;
         @include switchIconButton;
+        position: absolute;
+        top: .5rem;
+        right: 0;
     }
 }

@@ -2,13 +2,13 @@ const api = 'http://greenvelvet.alwaysdata.net/bugTracker/api';
 let logoutBtn = document.querySelector('.logoutBtn');
 let addBtn = document.querySelector('.addButton');
 
-if (sessionStorage.getItem('status') !== 'loggedIn') {
+if (localStorage.getItem('status') !== 'loggedIn') {
     location.replace('login.html')
 }
 
 async function getUser(userId) {
 
-    const token = sessionStorage.getItem('token');
+    const token = localStorage.getItem('token');
 
     try {
         const response = await fetch(`${api}/users/${token}`, {
@@ -27,8 +27,7 @@ async function getUser(userId) {
         } else {
             let name = result.result.user[userId];
             console.log(name);
-            if (name === undefined) {return}
-            else {return name}
+            return name;
         }
     }
     catch (err) { console.log(err) };
@@ -36,7 +35,7 @@ async function getUser(userId) {
 
 async function logout() {
 
-    const token = sessionStorage.getItem('token');
+    const token = localStorage.getItem('token');
 
     try {
         const response = await fetch(`${api}/logout/${token}`, {
@@ -55,8 +54,8 @@ async function logout() {
             console.log(token);
             console.log(result.result.message);
         } else {
-            sessionStorage.removeItem('status');
-            sessionStorage.removeItem('token');
+            localStorage.removeItem('status');
+            localStorage.removeItem('token');
             location.reload();
         }
     }
@@ -66,7 +65,7 @@ async function logout() {
 
 async function deleteBug (id) {
 
-    const token = sessionStorage.getItem('token');
+    const token = localStorage.getItem('token');
     const bugId = id;
     try {
         const response = await fetch(`${api}/delete/${token}/${bugId}`, {
@@ -94,8 +93,8 @@ async function deleteBug (id) {
 
 async function displayBugs () {
 
-    const token = sessionStorage.getItem('token');
-    const userId = sessionStorage.getItem('userId');
+    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('userId');
     
     try {
         const response = await fetch(`${api}/list/${token}/${userId}`, {
@@ -197,6 +196,7 @@ async function displayBugs () {
                 let deleteBtn = document.createElement('button');
                 deleteBtn.classList.add('actionButtonTwo', 'deleteButton');
                 deleteBtn.setAttribute('id', bug.id);
+                deleteBtn.setAttribute('onclick', `deleteBug(document.querySelector('.deleteButton').id)`)
                 deleteCtn.appendChild(deleteBtn);
                 
                 let deleteImg = document.createElement('img');
@@ -209,7 +209,6 @@ async function displayBugs () {
                 deleteTxt.innerText = 'Supprimer';
                 deleteBtn.appendChild(deleteTxt);
 
-                // document.querySelector('.deleteButton').addEventListener('click', deleteBug((document.querySelector('.deleteButton').id)));
             }
 
         }

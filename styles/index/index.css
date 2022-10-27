@@ -96,7 +96,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 5rem;
+  height: auto;
+  padding: .5rem 0;
   border-right: 2px dotted #353535;
   border-bottom: 2px dotted #353535;
 }
@@ -108,7 +109,37 @@
   grid-column: 1 / 3;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0 .5rem;
+  padding: 1rem .5rem;
+}
+
+.tableUnitDescTitle {
+  font-weight: 600;
+}
+
+.tableUnitDescDesc {
+  font-size: .8rem;
+}
+
+@media screen and (max-width: 860px) {
+  .tableHead {
+    display: none;
+  }
+  .tableUnit {
+    margin: .5rem;
+    grid-template-columns: 1fr;
+    background: #efefef;
+    border-bottom: none;
+    position: relative;
+  }
+  .tableUnit > * {
+    grid-column: 1 / 3;
+    justify-content: flex-start;
+    border: none;
+    margin-left: 1rem;
+  }
+  .tableUnitDesc {
+    padding: 1rem 0;
+  }
 }
 
 @media screen and (max-width: 442px) {
