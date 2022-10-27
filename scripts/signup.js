@@ -12,13 +12,16 @@ async function signup(e) {
     let regexUsername = new RegExp('^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$');
     let regexPassword = new RegExp('"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"');
 
+    document.querySelector('.errorCtn').innerHTML = '';
     if (passwordValidation !== password) {
         let wrongVerif = document.createElement('p').innerText = 'Les mots de passe ne correspondent pas';
         document.querySelector('.errorCtn').append(wrongVerif);
-    } else if (!regexUsername.test(username)) {
+    } 
+    if (!regexUsername.test(username)) {
         let wrongUsername = document.createElement('p').innerText = 'Mauvais format d\'identifiant';
         document.querySelector('.errorCtn').append(wrongUsername);
-    } else if (!regexPassword.test(password)) {
+    } 
+    if (!regexPassword.test(password)) {
         let wrongPassword = document.createElement('p').innerText = 'Mauvais format de mot de passe.';
         document.querySelector('.errorCtn').append(wrongPassword);
     } else {

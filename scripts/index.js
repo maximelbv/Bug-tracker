@@ -117,7 +117,7 @@ async function changeState (id, nState) {
             console.log(result.result.message);
         } else if (result.result.status == 'done') {
             console.log(result);
-            console.log(nState);
+            console.log(newState);
             // location.reload();
         }
     }
@@ -208,24 +208,27 @@ async function displayBugs () {
                 
                 let opt1 = document.createElement('option');
                 opt1.setAttribute('value', '0');
+                if (bug.state == opt1.value) {
+                    opt1.setAttribute('selected', 'selected')
+                }
                 opt1.innerText = 'À traiter';
                 stateInput.appendChild(opt1);
                 
                 let opt2 = document.createElement('option');
                 opt2.setAttribute('value', '1');
+                if (bug.state == opt2.value) {
+                    opt2.setAttribute('selected', 'selected')
+                }
                 opt2.innerText = 'En cours';
                 stateInput.appendChild(opt2);
                 
                 let opt3 = document.createElement('option');
                 opt3.setAttribute('value', '2');
+                if (bug.state == opt3.value) {
+                    opt3.setAttribute('selected', 'selected')
+                }
                 opt3.innerText = 'Terminé';
                 stateInput.appendChild(opt3);
-
-
-                let currentState = stateInput.options[stateInput.selectedIndex].value;
-                console.log(currentState);
-                stateInput.setAttribute('onchange', `console.log(${bug.id}, ${currentState})`);
-                stateInput.setAttribute('onchange', `changeState(${bug.id}, ${currentState})`);
 
                 // DELETE BUTTON
                 let deleteCtn = document.createElement('td');
@@ -247,6 +250,8 @@ async function displayBugs () {
                 let deleteTxt = document.createElement('p');
                 deleteTxt.innerText = 'Supprimer';
                 deleteBtn.appendChild(deleteTxt);
+
+                stateInput.addEventListener('change',() => changeState(bug.id, stateInput.options[stateInput.selectedIndex].value));
 
             }
 
