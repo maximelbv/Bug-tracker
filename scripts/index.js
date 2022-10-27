@@ -54,9 +54,11 @@ async function logout() {
             console.log(token);
             console.log(result.result.message);
         } else {
-            localStorage.removeItem('status');
-            localStorage.removeItem('token');
-            location.reload();
+            if (confirm('Vous allez être déconnecté, voulez vous poursuivre?')) {
+                localStorage.removeItem('status');
+                localStorage.removeItem('token');
+                location.reload();
+            } else {return false}
         }
     }
     catch (err) { console.log(err) };
@@ -86,6 +88,37 @@ async function deleteBug (id) {
         } else if (result.result.status == 'done'){
             console.log(result.result.message);
             location.reload();
+        }
+    }
+    catch (err) { console.log(err) };
+}
+
+async function changeState (id, nState) {
+
+    const token = localStorage.getItem('token');
+    const bugId = id;
+    const newState = nState;
+
+    try {
+        const response = await fetch(`${api}/state/${token}/${bugId}/${newState}`, {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error! status: ${response.status}`);
+        }
+        const result = await response.json();
+        console.log(result);
+
+        if (result.result.status !== 'done') {
+            console.log(result.result.message);
+        } else if (result.result.status == 'done') {
+            console.log(result);
+            console.log(nState);
+            // location.reload();
         }
     }
     catch (err) { console.log(err) };
@@ -174,20 +207,26 @@ async function displayBugs () {
                 stateInputCtn.appendChild(stateInput);
                 
                 let opt1 = document.createElement('option');
-                opt1.setAttribute('value', 'À traiter');
+                opt1.setAttribute('value', '0');
                 opt1.innerText = 'À traiter';
                 stateInput.appendChild(opt1);
-
+                
                 let opt2 = document.createElement('option');
-                opt2.setAttribute('value', 'En cours');
+                opt2.setAttribute('value', '1');
                 opt2.innerText = 'En cours';
                 stateInput.appendChild(opt2);
                 
                 let opt3 = document.createElement('option');
-                opt3.setAttribute('value', 'Terminé');
+                opt3.setAttribute('value', '2');
                 opt3.innerText = 'Terminé';
                 stateInput.appendChild(opt3);
-                
+
+
+                let currentState = stateInput.options[stateInput.selectedIndex].value;
+                console.log(currentState);
+                stateInput.setAttribute('onchange', `console.log(${bug.id}, ${currentState})`);
+                stateInput.setAttribute('onchange', `changeState(${bug.id}, ${currentState})`);
+
                 // DELETE BUTTON
                 let deleteCtn = document.createElement('td');
                 deleteCtn.classList.add('tableUnitDelete');
@@ -196,7 +235,7 @@ async function displayBugs () {
                 let deleteBtn = document.createElement('button');
                 deleteBtn.classList.add('actionButtonTwo', 'deleteButton');
                 deleteBtn.setAttribute('id', bug.id);
-                deleteBtn.setAttribute('onclick', `deleteBug(document.querySelector('.deleteButton').id)`)
+                deleteBtn.setAttribute('onclick', `deleteBug(${bug.id})`);
                 deleteCtn.appendChild(deleteBtn);
                 
                 let deleteImg = document.createElement('img');
@@ -215,7 +254,6 @@ async function displayBugs () {
     }
     catch (err) { console.log(err) };
 }
-
 
 logoutBtn.addEventListener('click', logout);
 addBtn.addEventListener('click', () => {location.replace('reportABug.html')});
