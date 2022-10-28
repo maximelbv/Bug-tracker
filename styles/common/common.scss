@@ -96,9 +96,12 @@
     margin: 1rem 0;
 }
 
-.errorMsg {
+.errorCtn {
+    @include flexCenter;
+    flex-direction: column;
     color: red;
-    margin-bottom: 1rem;
+    margin: 1rem;
+    text-align: center;
 }
 
 @media screen and (max-width: 860px) {

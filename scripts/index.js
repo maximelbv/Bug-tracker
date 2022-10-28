@@ -54,11 +54,9 @@ async function logout() {
             console.log(token);
             console.log(result.result.message);
         } else {
-            if (confirm('Vous allez être déconnecté, voulez vous poursuivre?')) {
-                localStorage.removeItem('status');
-                localStorage.removeItem('token');
-                location.reload();
-            } else {return false}
+            localStorage.removeItem('status');
+            localStorage.removeItem('token');
+            location.reload();
         }
     }
     catch (err) { console.log(err) };
@@ -118,7 +116,7 @@ async function changeState (id, nState) {
         } else if (result.result.status == 'done') {
             console.log(result);
             console.log(newState);
-            // location.reload();
+            location.reload();
         }
     }
     catch (err) { console.log(err) };
@@ -250,6 +248,8 @@ async function displayBugs () {
                 let deleteTxt = document.createElement('p');
                 deleteTxt.innerText = 'Supprimer';
                 deleteBtn.appendChild(deleteTxt);
+
+                // -------------------------------------------
 
                 stateInput.addEventListener('change',() => changeState(bug.id, stateInput.options[stateInput.selectedIndex].value));
 

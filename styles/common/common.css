@@ -104,9 +104,14 @@
   color: #4d85e4;
 }
 
-.errorMsg {
+.errorCtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   color: red;
-  margin-bottom: 1rem;
+  margin: 1rem;
+  text-align: center;
 }
 
 @media screen and (max-width: 860px) {

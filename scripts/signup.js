@@ -9,23 +9,27 @@ async function signup(e) {
     let password = document.getElementById('authFormPasswordSignup').value;
     let passwordValidation = document.getElementById('authFormPasswordConfirm').value;
 
-    let regexUsername = new RegExp('^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$');
-    let regexPassword = new RegExp('"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"');
+    let errorCtn = document.querySelector('.errorCtn');
 
-    document.querySelector('.errorCtn').innerHTML = '';
-    if (passwordValidation !== password) {
-        let wrongVerif = document.createElement('p').innerText = 'Les mots de passe ne correspondent pas';
-        document.querySelector('.errorCtn').append(wrongVerif);
-    } 
-    if (!regexUsername.test(username)) {
-        let wrongUsername = document.createElement('p').innerText = 'Mauvais format d\'identifiant';
-        document.querySelector('.errorCtn').append(wrongUsername);
-    } 
-    if (!regexPassword.test(password)) {
-        let wrongPassword = document.createElement('p').innerText = 'Mauvais format de mot de passe.';
-        document.querySelector('.errorCtn').append(wrongPassword);
-    } else {
-        try {
+    let regexUsername = new RegExp('^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$');
+    let regexPassword = new RegExp('^.{8,20}$');
+
+    let wrongVerif = document.createElement('p')
+    wrongVerif.innerText = 'Les mots de passe ne correspondent pas';
+    let wrongUsername = document.createElement('p')
+    wrongUsername.innerText = 'Veuillez entrer un nom d\'utilisateur entre 8 et 20 charactères';
+    let wrongPassword = document.createElement('p')
+    wrongPassword.innerText = 'Veuillez utiliser un mot de passe entre 8 et 20 charactères';
+
+    
+    try {
+
+        errorCtn.innerHTML = '';
+
+        if (password !== passwordValidation) {
+            errorCtn.append(wrongVerif)
+        } else if (regexUsername.test(username) && regexPassword.test(password)) {
+            
             const response = await fetch(`${api}/signup/${username}/${password}`, {
                 method: 'GET',
                 headers: {
@@ -40,7 +44,7 @@ async function signup(e) {
             const result = await response.json();
 
             if (result.result.status === 'failure') {
-                document.querySelector('.errorCtn').innerHTML = `<p class='errorMsg'>${result.result.message}</p>`
+                errorCtn.innerHTML = `<p class='errorMsg'>${result.result.message}</p>`
             }
 
             if (result.result.status === 'done') {
@@ -51,9 +55,19 @@ async function signup(e) {
             }
             console.log(result);
             return result;
+
         }
-        catch(err) {console.log(err)}
+        else if (!regexUsername.test(username) && !regexPassword.test(password)){
+            errorCtn.append(wrongUsername, wrongPassword)
+        } else if (!regexUsername.test(username)) {
+            errorCtn.append(wrongUsername)
+        } else if (!regexPassword.test(password)) {
+            console.log(password)
+            console.log('a')
+            errorCtn.append(wrongPassword)
+        }
     }
+    catch(err) {console.log(err)}
 }
 
 form.addEventListener('submit', signup);
