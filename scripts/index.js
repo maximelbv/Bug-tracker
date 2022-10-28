@@ -145,12 +145,16 @@ async function displayBugs () {
             console.log(result.result.message);
         } else {
 
+            let allCount = 0;
+            let inProgressCount = 0;
+            let completedCount = 0;
+
             let table = document.querySelector('.tableBody');
 
             let bugList = result.result.bug;
+
             
             for (let bug of bugList) {
-                console.log(bug);
 
                 let row = document.createElement('tr');
                 row.classList.add('tableUnit');
@@ -253,8 +257,15 @@ async function displayBugs () {
 
                 stateInput.addEventListener('change',() => changeState(bug.id, stateInput.options[stateInput.selectedIndex].value));
 
-            }
+                allCount++;
+                console.log(bug.state);
+                if (bug.state === '1') { inProgressCount++ };
+                if (bug.state === '2') { completedCount++ };
 
+            }
+            document.getElementById('allCount').innerText = allCount;
+            document.getElementById('inProgressCount').innerText = inProgressCount;
+            document.getElementById('completedCount').innerText = completedCount;
         }
     }
     catch (err) { console.log(err) };

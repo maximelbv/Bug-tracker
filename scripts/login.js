@@ -8,8 +8,6 @@ async function login(e) {
     let username = document.getElementById('authFormUsernameLog').value;
     let password = document.getElementById('authFormPasswordLog').value;
 
-    console.log(username,'+', password)
-
     try {
         const response = await fetch(`${api}/login/${username}/${password}`, {
             method: 'GET',
