@@ -49,8 +49,6 @@
             @include flexCenter;
             background: rgb(106, 164, 234);
             height: 4rem;
-            border-right: 2px solid rgb(53, 53, 53);
-            border-bottom: 2px dotted rgb(53, 53, 53);
         }
         &Desc {
             grid-column: 1 / 3;
@@ -59,12 +57,12 @@
     &Unit {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
+        margin: .5rem;
+        background: rgb(239, 239, 239);
         & > * {
             @include flexCenter;
             height: auto;
             padding: .5rem 0;
-            border-right: 2px dotted rgb(53, 53, 53);
-            border-bottom: 2px dotted rgb(53, 53, 53);
         }
         &Desc {
             @include flexCenter;
@@ -72,7 +70,12 @@
             flex-direction: column;
             align-items: flex-start;
             padding: 1rem .5rem;
-            &Title {font-weight: 600;}
+            margin-right: 1rem;
+            word-break: break-word;
+            &Title {
+                font-weight: 600;
+                margin-bottom: 1rem;
+            }
             &Desc {font-size: .8rem;}
         }
     }
@@ -84,7 +87,6 @@
         &Unit {
             margin: .5rem;
             grid-template-columns: 1fr;
-            background: rgb(239, 239, 239);
             border-bottom: none;
             position: relative;
             // &::before {
@@ -101,8 +103,10 @@
                 border: none;
                 margin-left: 1rem;
             }
+
             &Desc {
                 padding: 1rem 0;
+                margin-top: 1.5rem;
             }
         }
     }

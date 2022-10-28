@@ -45,11 +45,6 @@
   display: none;
 }
 
-.completeListFilter span, .treatListFilter span {
-  font-weight: 600;
-  display: none;
-}
-
 .deleteButton {
   display: flex;
   align-items: center;
@@ -119,12 +114,6 @@
     display: block;
   }
   .addButton p {
-    display: none;
-  }
-  .completeListFilter span, .treatListFilter span {
-    display: inline;
-  }
-  .completeListFilter p, .treatListFilter p {
     display: none;
   }
   .deleteButton {

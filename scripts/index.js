@@ -6,6 +6,24 @@ if (localStorage.getItem('status') !== 'loggedIn') {
     location.replace('login.html')
 }
 
+async function ping () {
+    const response = await fetch(`${api}/ping`, {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+        },
+    });
+    
+    if (!response.ok) {
+        throw new Error(`Error! status: ${response.status}`);
+    }
+    const result = await response.json();
+    
+    if (result.result.ready !== 'true') {
+        console.log('API status : OK');
+    }
+}
+
 async function logout() {
 
     const token = localStorage.getItem('token');

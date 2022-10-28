@@ -54,13 +54,6 @@
     & img {display: none}
 }
 
-.completeListFilter, .treatListFilter {
-    & span {
-        font-weight: 600;
-        display: none
-    }
-}
-
 .deleteButton {
     @include flexCenter;
     background: rgb(255, 73, 73);
@@ -109,11 +102,6 @@
     .addButton {
         @include switchIconButton;
     }
-
-        .completeListFilter, .treatListFilter {
-            & span {display: inline;}
-            & p {display: none;}
-        }
 
     .deleteButton {
         border-radius: 50%;
