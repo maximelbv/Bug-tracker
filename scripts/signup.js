@@ -62,8 +62,6 @@ async function signup(e) {
         } else if (!regexUsername.test(username)) {
             errorCtn.append(wrongUsername)
         } else if (!regexPassword.test(password)) {
-            console.log(password)
-            console.log('a')
             errorCtn.append(wrongPassword)
         }
     }

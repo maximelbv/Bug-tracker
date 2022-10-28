@@ -6,33 +6,6 @@ if (localStorage.getItem('status') !== 'loggedIn') {
     location.replace('login.html')
 }
 
-async function getUser(userId) {
-
-    const token = localStorage.getItem('token');
-
-    try {
-        const response = await fetch(`${api}/users/${token}`, {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-            },
-        });
-
-        if (!response.ok) {
-            throw new Error(`Error! status: ${response.status}`);
-        }
-        const result = await response.json();
-        if (result.result.status !== 'done') {
-            console.log(result.result.message);
-        } else {
-            let name = result.result.user[userId];
-            console.log(name);
-            return name;
-        }
-    }
-    catch (err) { console.log(err) };
-}
-
 async function logout() {
 
     const token = localStorage.getItem('token');
@@ -49,9 +22,7 @@ async function logout() {
             throw new Error(`Error! status: ${response.status}`);
         }
         const result = await response.json();
-        console.log(result)
         if (result.result.status !== 'done') {
-            console.log(token);
             console.log(result.result.message);
         } else {
             localStorage.removeItem('status');
@@ -79,7 +50,6 @@ async function deleteBug (id) {
             throw new Error(`Error! status: ${response.status}`);
         }
         const result = await response.json();
-        console.log(result);
 
         if (result.result.status !== 'done') {
             console.log(result.result.message);
@@ -109,13 +79,10 @@ async function changeState (id, nState) {
             throw new Error(`Error! status: ${response.status}`);
         }
         const result = await response.json();
-        console.log(result);
 
         if (result.result.status !== 'done') {
             console.log(result.result.message);
         } else if (result.result.status == 'done') {
-            console.log(result);
-            console.log(newState);
             location.reload();
         }
     }
@@ -139,7 +106,6 @@ async function displayBugs () {
             throw new Error(`Error! status: ${response.status}`);
         }
         const result = await response.json();
-        console.log(result);
 
         if (result.result.status !== 'done') {
             console.log(result.result.message);
@@ -155,6 +121,29 @@ async function displayBugs () {
 
             
             for (let bug of bugList) {
+
+                let username;
+
+                try {
+                    const userId = bug.user_id;
+                    const response = await fetch(`${api}/users/${token}`, {
+                        method: 'GET',
+                        headers: {
+                            accept: 'application/json',
+                        },
+                    })
+
+                    if (!response.ok) {
+                        throw new Error(`Error! status: ${response.status}`);
+                    }
+                    const result = await response.json();
+                    if (result.result.status !== 'done') {
+                        console.log(result.result.message);
+                    } else {
+                        username = result.result.user[userId];
+                    }
+                }
+                catch (err) { console.log(err) };
 
                 let row = document.createElement('tr');
                 row.classList.add('tableUnit');
@@ -193,7 +182,7 @@ async function displayBugs () {
                 
                 // DEVELOPER NAME
                 let devName = document.createElement('td');
-                devName.innerText = getUser(bug.user_id);
+                devName.innerText = username;
                 devName.classList.add('tableUnitDate');
                 row.appendChild(devName);
                 
@@ -258,7 +247,6 @@ async function displayBugs () {
                 stateInput.addEventListener('change',() => changeState(bug.id, stateInput.options[stateInput.selectedIndex].value));
 
                 allCount++;
-                console.log(bug.state);
                 if (bug.state === '1') { inProgressCount++ };
                 if (bug.state === '2') { completedCount++ };
 

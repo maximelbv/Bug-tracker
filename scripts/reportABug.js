@@ -29,9 +29,8 @@ async function logout() {
             throw new Error(`Error! status: ${response.status}`);
         }
         const result = await response.json();
-        console.log(result)
+
         if (result.result.status !== 'done') {
-            console.log(token);
             console.log(result.result.message);
         } else {
             localStorage.removeItem('status');
@@ -46,8 +45,6 @@ async function logout() {
 async function addReport(e) {
 
     e.preventDefault();
-
-    console.log('ok');
 
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
@@ -84,7 +81,6 @@ async function addReport(e) {
     
             if (result.result.status === 'done') {
                 console.log(result.result);
-                console.log('done');
                 document.querySelector('.main').innerHTML = 
                 `
                 <div class='animCtn'>
