@@ -19,20 +19,27 @@
     <header class="header">
 
         <a href="index.html" class="headerTitle">
-            <img src="./media/icons/bug.ico" alt="bug tracker logo" width="32px">
-            <p>Bug Tracker</p>
+            <img src="./media/icons/bug.ico" alt="bug tracker logo" class="iconL">
+            <span>Bug Tracker</span>
         </a>
 
-        <ul class="headerActions">
+        <div class="headerActions">
+            <button class="actionButton completeListFilter">
+                <span>All</span>
+            </button>
+
+            <button class="actionButton treatListFilter">
+                <span>ToDo</span>
+            </button>
+
             <button class="actionButtonTwo addButton">
-                <img src="./media/icons/plus.png" alt="plus / add icon" width="16px">
-                <p>Ajouter</p>
+                <span>Ajouter</span>
             </button>
 
             <button class="logoutBtn">
-                <img src="./media/icons/logout.png" alt="logout icon" width="32px">
+                <img src="./media/icons/logout.png" alt="logout icon" class="iconL">
             </button>
-        </ul>
+        </div>
 
     </header>    
 
@@ -41,17 +48,17 @@
 
             <li class="all">
                 <p id="allCount">0</p>
-                <img src="./media/icons/bug-32.ico" alt="uncompleted icon" width="18px">
+                <img src="./media/icons/bug-32.ico" alt="uncompleted icon" class="iconS">
             </li>
 
             <li class="inProgress">
                 <p id="inProgressCount">0</p>
-                <img src="./media/icons/inProgress.png" alt="in progress icon" width="24px">
+                <img src="./media/icons/inProgress.png" alt="in progress icon" class="iconM">
             </li>
             
             <li class="completed">
                 <p id="completedCount">0</p>
-                <img src="./media/icons/checked.png" alt="completed icon" width="16px">
+                <img src="./media/icons/checked.png" alt="completed icon" class="iconXS">
             </li>
 
         </ul>

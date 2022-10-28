@@ -73,6 +73,7 @@ async function deleteBug (id) {
             console.log(result.result.message);
         } else if (result.result.status == 'done'){
             console.log(result.result.message);
+            alert('Bug supprimé');
             location.reload();
         }
     }

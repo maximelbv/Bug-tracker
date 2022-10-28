@@ -97,11 +97,21 @@
     text-align: center;
 }
 
+.iconXS {width: 16px}
+.iconS {width: 18px}
+.iconM {width: 24px}
+.iconL {width: 32px}
+.iconXL {width: 48px}
+
 @media screen and (max-width: 860px) {
 
     .addButton {
         @include switchIconButton;
     }
+
+        .completeListFilter, .treatListFilter {
+            & span {display: inline;}
+        }
 
     .deleteButton {
         border-radius: 50%;

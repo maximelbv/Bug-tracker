@@ -109,12 +109,35 @@
   text-align: center;
 }
 
+.iconXS {
+  width: 16px;
+}
+
+.iconS {
+  width: 18px;
+}
+
+.iconM {
+  width: 24px;
+}
+
+.iconL {
+  width: 32px;
+}
+
+.iconXL {
+  width: 48px;
+}
+
 @media screen and (max-width: 860px) {
   .addButton img {
     display: block;
   }
   .addButton p {
     display: none;
+  }
+  .completeListFilter span, .treatListFilter span {
+    display: inline;
   }
   .deleteButton {
     border-radius: 50%;
