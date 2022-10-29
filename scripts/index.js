@@ -301,7 +301,7 @@ async function displayBugs () {
                     deleteImg.setAttribute('width', '12px');
                     deleteBtn.appendChild(deleteImg);
     
-                    let deleteTxt = document.createElement('p');
+                    let deleteTxt = document.createElement('span');
                     deleteTxt.innerText = 'Supprimer';
                     deleteBtn.appendChild(deleteTxt);
                 }

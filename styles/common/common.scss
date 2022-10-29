@@ -20,7 +20,7 @@
 
 @mixin switchIconButton {
     & img {display: block;}
-    & p {display: none;}
+    & span {display: none;}
 }
 
 * {
@@ -109,9 +109,9 @@
         @include switchIconButton;
     }
 
-        .completeListFilter, .treatListFilter {
-            & span {display: inline;}
-        }
+    .completeListFilter, .treatListFilter {
+        & span {display: inline;}
+    }
 
     .deleteButton {
         border-radius: 50%;

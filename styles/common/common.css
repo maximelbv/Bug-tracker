@@ -133,7 +133,7 @@
   .addButton img {
     display: block;
   }
-  .addButton p {
+  .addButton span {
     display: none;
   }
   .completeListFilter span, .treatListFilter span {
@@ -149,7 +149,7 @@
   .deleteButton img {
     display: block;
   }
-  .deleteButton p {
+  .deleteButton span {
     display: none;
   }
 }
