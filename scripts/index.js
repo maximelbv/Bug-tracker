@@ -244,6 +244,10 @@ async function displayBugs () {
                 stateInput.setAttribute('name', 'state');
                 stateInput.setAttribute('id', 'stateList');
                 stateInputCtn.appendChild(stateInput);
+                stateInput.setAttribute('disabled', 'disabled');
+                if (bug.user_id === userId) {
+                    stateInput.removeAttribute('disabled', 'disabled');
+                }
                 
                 let opt1 = document.createElement('option');
                 opt1.setAttribute('value', '0');
@@ -270,25 +274,28 @@ async function displayBugs () {
                 stateInput.appendChild(opt3);
 
                 // DELETE BUTTON
-                let deleteCtn = document.createElement('td');
-                deleteCtn.classList.add('tableUnitDelete');
-                row.appendChild(deleteCtn);
-                
-                let deleteBtn = document.createElement('button');
-                deleteBtn.classList.add('actionButtonTwo', 'deleteButton');
-                deleteBtn.setAttribute('id', bug.id);
-                deleteBtn.setAttribute('onclick', `deleteBug(${bug.id})`);
-                deleteCtn.appendChild(deleteBtn);
-                
-                let deleteImg = document.createElement('img');
-                deleteImg.setAttribute('src', './media/icons/cross.png');
-                deleteImg.setAttribute('alt', 'delete button icon');
-                deleteImg.setAttribute('width', '12px');
-                deleteBtn.appendChild(deleteImg);
 
-                let deleteTxt = document.createElement('p');
-                deleteTxt.innerText = 'Supprimer';
-                deleteBtn.appendChild(deleteTxt);
+                if (bug.user_id === userId) {
+                    let deleteCtn = document.createElement('td');
+                    deleteCtn.classList.add('tableUnitDelete');
+                    row.appendChild(deleteCtn);
+                    
+                    let deleteBtn = document.createElement('button');
+                    deleteBtn.classList.add('actionButtonTwo', 'deleteButton');
+                    deleteBtn.setAttribute('id', bug.id);
+                    deleteBtn.setAttribute('onclick', `deleteBug(${bug.id})`);
+                    deleteCtn.appendChild(deleteBtn);
+                    
+                    let deleteImg = document.createElement('img');
+                    deleteImg.setAttribute('src', './media/icons/cross.png');
+                    deleteImg.setAttribute('alt', 'delete button icon');
+                    deleteImg.setAttribute('width', '12px');
+                    deleteBtn.appendChild(deleteImg);
+    
+                    let deleteTxt = document.createElement('p');
+                    deleteTxt.innerText = 'Supprimer';
+                    deleteBtn.appendChild(deleteTxt);
+                }
 
                 // -------------------------------------------
 
@@ -309,4 +316,4 @@ async function displayBugs () {
 
 logoutBtn.addEventListener('click', logout);
 addBtn.addEventListener('click', () => {location.replace('reportABug.html')});
-// displayBugs();
+displayBugs();
