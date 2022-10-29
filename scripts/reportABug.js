@@ -1,5 +1,5 @@
 const api = 'http://greenvelvet.alwaysdata.net/bugTracker/api';
-returnHomeBtn = document.querySelector('.homeButton');
+let returnHomeBtn = document.querySelector('.homeButton');
 let logoutBtn = document.querySelector('.logoutBtn');
 
 let errorCtn = document.querySelector('.errorCtn');

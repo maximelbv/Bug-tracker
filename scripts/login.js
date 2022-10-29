@@ -31,7 +31,6 @@ async function login(e) {
             localStorage.setItem('userId', result.result.id);
             location.replace('index.html');
         }
-        console.log(result.result);
         return result;
     }
     catch(err) {console.log(err)}

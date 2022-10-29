@@ -1,13 +1,49 @@
 const api = 'http://greenvelvet.alwaysdata.net/bugTracker/api';
-let logoutBtn = document.querySelector('.logoutBtn');
+
+// BUTTONS
+let switchButtons = document.getElementsByClassName("switchButton");
+let completeListBtn = document.querySelector('.completeListFilter');
+let treatListBtn = document.querySelector('.treatListFilter');
 let addBtn = document.querySelector('.addButton');
+let logoutBtn = document.querySelector('.logoutBtn');
+
+// USER INFOS
 const token = localStorage.getItem('token');
 const userId = localStorage.getItem('userId');
 
+let displayFetch = `${api}/list/${token}/0`;
+
+// check if the user is authenticated
 if (localStorage.getItem('status') !== 'loggedIn') {
     location.replace('login.html')
 }
 
+// Filters
+let addSelectClass = function(){
+    removeSelectClass();
+    this.classList.add('selected');	
+}
+
+let removeSelectClass = function(){
+    for (button of switchButtons) {
+        button.classList.remove('selected')
+    }
+}
+
+for (button of switchButtons) {
+    button.addEventListener("click",addSelectClass);
+    button.addEventListener("click",() => {
+        if (completeListBtn.classList.contains('selected')) {
+            displayFetch = `${api}/list/${token}/0`;
+            displayBugs();
+        } else if (treatListBtn.classList.contains('selected')) {
+            displayFetch = `${api}/list/${token}/${userId}`;
+            displayBugs();
+        }
+    });
+}
+
+// misc functions
 async function ping () {
     const response = await fetch(`${api}/ping`, {
         method: 'GET',
@@ -44,6 +80,7 @@ async function logout() {
             console.log(result.result.message);
         } else {
             localStorage.removeItem('status');
+            localStorage.removeItem('userId');
             localStorage.removeItem('token');
             location.reload();
         }
@@ -52,6 +89,7 @@ async function logout() {
     
 }
 
+// CRUD functions (create function is in 'reportABug.js')
 async function deleteBug (id) {
 
     const bugId = id;
@@ -106,37 +144,6 @@ async function changeState (id, nState) {
     catch (err) { console.log(err) };
 }
 
-let button = document.getElementsByClassName("switchButton");
-	
-let addSelectClass = function(){
-    removeSelectClass();
-    this.classList.add('selected');	
-}
-
-let removeSelectClass = function(){
-    for (let i =0; i < button.length; i++) {
-        button[i].classList.remove('selected')
-    }
-}
-
-let completeListBtn = document.querySelector('.completeListFilter');
-let treatListBtn = document.querySelector('.treatListFilter')
-let displayFetch = `${api}/list/${token}/0`;
-
-for (let i =0; i < button.length; i++) {
-    button[i].addEventListener("click",addSelectClass);
-    button[i].addEventListener("click",() => {
-        if (completeListBtn.classList.contains('selected')) {
-            displayFetch = `${api}/list/${token}/0`;
-            displayBugs();
-        } else if (treatListBtn.classList.contains('selected')) {
-            displayFetch = `${api}/list/${token}/${userId}`;
-            displayBugs();
-        }
-    });
-}
-
-
 async function displayBugs () {
 
     document.querySelector('.tableBody').innerHTML = '';
@@ -172,6 +179,7 @@ async function displayBugs () {
 
                 let username;
 
+                // get the name of the user with the user_id of the bug
                 try {
                     const userId = bug.user_id;
                     const response = await fetch(`${api}/users/${token}`, {
@@ -193,6 +201,7 @@ async function displayBugs () {
                 }
                 catch (err) { console.log(err) };
 
+                // create elements
                 let row = document.createElement('tr');
                 row.classList.add('tableUnit');
                 table.appendChild(row);

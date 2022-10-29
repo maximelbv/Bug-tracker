@@ -15,13 +15,12 @@ async function signup(e) {
     let regexPassword = new RegExp('^.{8,20}$');
 
     let wrongVerif = document.createElement('p')
-    wrongVerif.innerText = 'Les mots de passe ne correspondent pas';
     let wrongUsername = document.createElement('p')
-    wrongUsername.innerText = 'Veuillez entrer un nom d\'utilisateur entre 8 et 20 charactères';
     let wrongPassword = document.createElement('p')
+    wrongVerif.innerText = 'Les mots de passe ne correspondent pas';
+    wrongUsername.innerText = 'Veuillez entrer un nom d\'utilisateur entre 8 et 20 charactères';
     wrongPassword.innerText = 'Veuillez utiliser un mot de passe entre 8 et 20 charactères';
 
-    
     try {
 
         errorCtn.innerHTML = '';
