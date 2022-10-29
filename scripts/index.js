@@ -1,6 +1,8 @@
 const api = 'http://greenvelvet.alwaysdata.net/bugTracker/api';
 let logoutBtn = document.querySelector('.logoutBtn');
 let addBtn = document.querySelector('.addButton');
+const token = localStorage.getItem('token');
+const userId = localStorage.getItem('userId');
 
 if (localStorage.getItem('status') !== 'loggedIn') {
     location.replace('login.html')
@@ -25,8 +27,6 @@ async function ping () {
 }
 
 async function logout() {
-
-    const token = localStorage.getItem('token');
 
     try {
         const response = await fetch(`${api}/logout/${token}`, {
@@ -54,7 +54,6 @@ async function logout() {
 
 async function deleteBug (id) {
 
-    const token = localStorage.getItem('token');
     const bugId = id;
     try {
         const response = await fetch(`${api}/delete/${token}/${bugId}`, {
@@ -82,7 +81,6 @@ async function deleteBug (id) {
 
 async function changeState (id, nState) {
 
-    const token = localStorage.getItem('token');
     const bugId = id;
     const newState = nState;
 
@@ -108,13 +106,44 @@ async function changeState (id, nState) {
     catch (err) { console.log(err) };
 }
 
+let button = document.getElementsByClassName("switchButton");
+	
+let addSelectClass = function(){
+    removeSelectClass();
+    this.classList.add('selected');	
+}
+
+let removeSelectClass = function(){
+    for (let i =0; i < button.length; i++) {
+        button[i].classList.remove('selected')
+    }
+}
+
+let completeListBtn = document.querySelector('.completeListFilter');
+let treatListBtn = document.querySelector('.treatListFilter')
+let displayFetch = `${api}/list/${token}/0`;
+
+for (let i =0; i < button.length; i++) {
+    button[i].addEventListener("click",addSelectClass);
+    button[i].addEventListener("click",() => {
+        if (completeListBtn.classList.contains('selected')) {
+            displayFetch = `${api}/list/${token}/0`;
+            displayBugs();
+        } else if (treatListBtn.classList.contains('selected')) {
+            displayFetch = `${api}/list/${token}/${userId}`;
+            displayBugs();
+        }
+    });
+}
+
+
 async function displayBugs () {
 
-    const token = localStorage.getItem('token');
-    const userId = localStorage.getItem('userId');
-    
+    document.querySelector('.tableBody').innerHTML = '';
+
     try {
-        const response = await fetch(`${api}/list/${token}/${userId}`, {
+
+        const response = await fetch(displayFetch, {
             method: 'GET',
             headers: {
                 accept: 'application/json',
@@ -280,4 +309,4 @@ async function displayBugs () {
 
 logoutBtn.addEventListener('click', logout);
 addBtn.addEventListener('click', () => {location.replace('reportABug.html')});
-displayBugs();
+// displayBugs();
